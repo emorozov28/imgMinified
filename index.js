@@ -34,27 +34,31 @@ const clearBuild = () => {
     });
 }
 
-const startMinified = () => {
+const startMinified = async () => {
     fs.readdir(pathImg, (err, files) => {
         const max = 100;
         let process = 0;
         const iterator = 100 / files.length;
         files.forEach(file => {
-            Jimp.read(path.resolve(__dirname, pathImg, file), (err, images) => {
-                if (err) throw err;
-                images
-                    // .resize(1920, 1080, Jimp.RESIZE_BEZIER) // resize
-                    .quality(50) // set JPEG quality
-                    // .greyscale() // set greyscale
-                    .scale(0.5)
-                    .write(path.resolve(__dirname, 'build', file)) // save
-                    // .resize(Jimp.AUTO, 250);
+
+            const image = await Jimp.read(path.resolve(__dirname, pathImg, file));
+
+            image.write(path.resolve(__dirname, 'build', file));
+            // Jimp.read(path.resolve(__dirname, pathImg, file), (err, images) => {
+            //     if (err) throw err;
+            //     images
+            //         // .resize(1920, 1080, Jimp.RESIZE_BEZIER) // resize
+            //         .quality(50) // set JPEG quality
+            //         // .greyscale() // set greyscale
+            //         .scale(0.5)
+            //         .write(path.resolve(__dirname, 'build', file)) // save
+            //         // .resize(Jimp.AUTO, 250);
+            //     });
                 process += iterator;
                 console.log(cc.set('fg_green', Math.round(process) + '%'));
                 if (process == 100) {
                     console.log(cc.set('fg_black', 'bg_green', 'Process successful'));
                 }
-            });
         });
     });
 }
