@@ -1,0 +1,20 @@
+{
+  "name": "minifiedIMG",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "console-colors": "^1.0.1",
+    "imagemin": "^8.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "jimp": "^0.16.1",
+    "node-console-colors": "^1.1.4"
+  }
+}
